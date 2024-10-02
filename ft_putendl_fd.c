@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smillan- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 15:21:11 by smillan-          #+#    #+#             */
-/*   Updated: 2024/10/02 15:25:49 by smillan-         ###   ########.fr       */
+/*   Created: 2024/10/02 17:11:27 by smillan-          #+#    #+#             */
+/*   Updated: 2024/10/02 19:21:16 by smillan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void ft_putendl_fd(char *s, int fd)
 {
-	char	*ptr;
-	size_t	a2;
-	size_t	a1;
-	int		i;
+	int	i;
 
 	i = 0;
-	a2 = ft_strlen(s2);
-	a1 = ft_strlen(s1);
-	ptr = (char *)malloc(a2 + a1 + 1);
-	if (ptr == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
+	while (s[i] != '\0')
 	{
-		ptr[i] = s1[i];
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	while (s2[i - a1] != '\0')
-	{
-		ptr[i] = s2[i - a1];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	write(fd, "\n", 1);
 }

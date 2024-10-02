@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smillan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/02 12:50:51 by smillan-          #+#    #+#             */
+/*   Updated: 2024/10/02 12:51:04 by smillan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	ft_strlen(const char *s)
@@ -9,13 +21,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-/*
-int main()
-{
-    const char *str = "Hola, mundo!";
-    size_t length = ft_strlen(str);
-
-    printf("La longitud de la cadena es: %zu\n", length);
-    return 0;
-}
-*/

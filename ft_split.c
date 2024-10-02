@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smillan- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/02 17:03:24 by smillan-          #+#    #+#             */
+/*   Updated: 2024/10/02 17:50:40 by smillan-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	encontrar(char const *s, char c, int i, int k)
@@ -7,9 +19,9 @@ size_t	encontrar(char const *s, char c, int i, int k)
 	sol = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i] != '\0')
 			i++;
-		while (s[i] != c)
+		while (s[i] != c && s[i] != '\0')
 		{
 			if (k)
 			{
@@ -36,30 +48,27 @@ static void	*free_mem(char **cad, int aux)
 
 char	**crear_mini(char const *s, char c, char **cad, int aux)
 {
-	int	j;
 	int	i;
+	int	j;
 	int	stat;
 
-	j = 0;
 	i = 0;
-	stat = 0;
 	while (s[i] != '\0')
 	{
-		while (c == s[i])
+		while (s[i] == c && s[i] != '\0')
 			i++;
+		if (s[i] == '\0')
+			return (cad[aux] = NULL, cad);
 		j = i;
-		while (c != s[i] && c != '\0')
+		while (c != s[i] && s[i] != '\0')
 			i++;
 		cad[aux] = (char *)malloc((i - j + 1) * sizeof(char));
 		if (!cad[aux])
 			return (free_mem(cad, aux));
 		stat = j;
-		while (i > j)
-		{
-			cad[aux][j - stat] = s[j];
-			j++;
-		}
-		cad[aux][j - stat] = '\0';
+		while (i > j++)
+			cad[aux][j - stat - 1] = s[j - 1];
+		cad[aux][j - stat - 1] = '\0';
 		aux++;
 	}
 	cad[aux] = NULL;
@@ -71,6 +80,8 @@ char	**ft_split(char const *s, char c)
 	char	**cad;
 	size_t	num_cad;
 
+	if (!s)
+		return (NULL);
 	num_cad = encontrar(s, c, 0, 1) + 1;
 	cad = (char **)malloc(num_cad * sizeof(char *));
 	if (!cad)
@@ -146,3 +157,32 @@ int main(void)
     return 0;
 }
 */
+
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int	main(void)
+{
+	char	*str;
+	char	**res;
+	char	c;
+	size_t	i;
+
+	str = strdup("         Hola             mundo           ");
+	c = ' ';
+
+	res = ft_split(str, c);
+	if (!res)
+		return (1);
+	i = 0;
+	while (res[i])
+	{
+		printf("Item %lu: \"%s\"\n", i, res[i]);
+		free(res[i]);
+		i++;
+	}
+	free(res);
+	free(str);
+	return (0);
+}*/
